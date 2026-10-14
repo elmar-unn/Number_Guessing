@@ -1,0 +1,234 @@
+:root {
+  --bg-gradient: linear-gradient(135deg, #e0f2fe, #f1f5f9);
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --accent: #0284c7;
+  --accent-hover: #0369a1;
+  --border: #cbd5e1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  font-family: system-ui, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text);
+}
+
+body {
+  width: 90%;
+  max-width: 600px;
+  min-width: 280px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.2);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+h1 {
+  margin-top: 0;
+  text-align: center;
+  color: var(--accent);
+  font-size: 2rem;
+}
+
+p {
+  line-height: 1.6;
+  color: #334155;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+
+.form label {
+  width: 100%;
+  font-weight: 700;
+}
+
+.guessField {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.guessField:focus {
+  outline: 2px solid var(--accent);
+}
+
+button {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+.resultParas {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.guesses {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+}
+
+.lastResult {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+}
+
+.lastResult:empty {
+  display: none;
+}
+
+/* Kaotamise ekraan */
+.fail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1rem;
+  overflow: hidden;
+  background: #020617;
+  color: white;
+  text-align: center;
+}
+
+.failed-text {
+  color: #ef4444;
+  font-size: clamp(4rem, 15vw, 10rem);
+  font-weight: 1000;
+  line-height: 1;
+  animation: pulse 0.7s infinite alternate;
+}
+
+.fail-number {
+  color: #facc15;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: 900;
+}
+
+.countdown {
+  color: white;
+  font-size: clamp(6rem, 22vw, 13rem);
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 0 35px #0284c7;
+}
+
+/* Video katab kogu mänguakna */
+.video-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: black;
+}
+
+/* Video ajal pole pause- ega sulgemisnuppe */
+.video-container video::-webkit-media-controls {
+  display: none !important;
+}
+
+.video-container video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+.video-finished,
+.video-error {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(2, 6, 23, 0.97);
+  color: white;
+}
+
+.video-finished h2 {
+  margin: 0;
+  color: #22c55e;
+  font-size: clamp(2rem, 8vw, 5rem);
+}
+
+.video-finished p,
+.video-error {
+  color: white;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    text-shadow: 0 0 10px #ef4444;
+  }
+  to {
+    transform: scale(1.06);
+    text-shadow: 0 0 40px #ef4444;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    width: 94%;
+    margin: 1rem auto;
+    padding: 1.25rem;
+  }
+
+  .form {
+    flex-direction: column;
+  }
+
+  .guessSubmit {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .failed-text {
+    animation: none;
+  }
+}

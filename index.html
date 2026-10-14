@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Number Guessing Game</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <main class="game-card">
+    <h1>Number Guessing Game</h1>
+
+    <p>
+      Arvuti valis numbri vahemikus 1–100.
+      Sul on selle äraarvamiseks 10 katset.
+    </p>
+
+    <form class="form" id="guessForm">
+      <label for="guessField">Sisesta oma pakkumine:</label>
+      <input
+        type="number"
+        min="1"
+        max="100"
+        step="1"
+        required
+        id="guessField"
+        class="guessField"
+        placeholder="1–100"
+      >
+      <button type="submit" class="guessSubmit">Paku!</button>
+    </form>
+
+    <div class="resultParas" aria-live="polite">
+      <p class="guesses"></p>
+      <p class="lastResult"></p>
+      <p class="lowOrHi"></p>
+      <p id="failStats">Kaotamisi: 0</p>
+    </div>
+  </main>
+
+  <!-- Kaotamise täisekraaniefekt -->
+  <div id="failOverlay" class="fail-overlay" hidden>
+    <div id="failedText" class="failed-text">FAILED!</div>
+
+    <div id="failNumber" class="fail-number">
+      FAIL #1
+    </div>
+
+    <div id="countdown" class="countdown">5</div>
+
+    <div id="videoContainer" class="video-container" hidden>
+      <video id="failVideo" playsinline preload="auto">
+        <source src="./Meow.mp4" type="video/mp4">
+        Sinu brauser ei toeta seda videot.
+      </video>
+
+      <div id="videoError" class="video-error" hidden>
+        Videot ei õnnestunud laadida. Kontrolli faili Meow.mp4.
+        <button id="retryVideoButton" type="button">
+          Proovi uuesti
+        </button>
+      </div>
+
+      <div id="videoFinished" class="video-finished" hidden>
+        <h2>VIDEO LÄBI!</h2>
+        <p>Sa oled kaotanud <span id="finalFailCount">1</span> korda.</p>
+        <button id="restartButton" type="button">
+          Mängi uuesti
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
